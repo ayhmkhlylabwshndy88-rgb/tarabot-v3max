@@ -1,0 +1,488 @@
+/* ============================================================
+   ترابط v3.0 — صفحة الطالب
+   ============================================================ */
+
+.student-body {
+    min-height: 100vh;
+    min-height: 100dvh;
+    background:
+        radial-gradient(ellipse at top, rgba(184, 134, 11, 0.08), transparent 50%),
+        var(--bg);
+    display: flex;
+    justify-content: center;
+}
+
+.student-page {
+    width: 100%;
+    max-width: 640px;
+    padding: var(--space-5) var(--space-4) var(--space-8);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    min-height: 100dvh;
+}
+
+/* ============================================================
+   الهيدر
+   ============================================================ */
+.student-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: var(--space-5);
+    margin-bottom: var(--space-6);
+    border-bottom: 1px solid var(--border);
+}
+
+.student-brand {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+}
+
+.student-logo {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-md);
+    background: linear-gradient(135deg, var(--gold-400), var(--gold-600));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    box-shadow: var(--shadow-gold);
+    flex-shrink: 0;
+}
+
+.student-brand-text h1 {
+    font-size: 22px;
+    font-weight: 900;
+    color: var(--primary);
+    line-height: 1.1;
+    letter-spacing: -0.5px;
+}
+
+.student-brand-text span {
+    font-size: 12px;
+    color: var(--text-3);
+    font-weight: 600;
+}
+
+.student-theme-btn {
+    width: 42px;
+    height: 42px;
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-2);
+    font-size: 18px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    transition: all var(--t-fast);
+}
+
+.student-theme-btn:hover {
+    color: var(--primary);
+    border-color: var(--primary);
+    transform: translateY(-2px);
+}
+
+/* ============================================================
+   البطل
+   ============================================================ */
+.student-hero {
+    text-align: center;
+    padding: var(--space-5) var(--space-4);
+    margin-bottom: var(--space-6);
+}
+
+.student-hero-icon {
+    font-size: 68px;
+    margin-bottom: var(--space-3);
+    filter: drop-shadow(0 8px 24px var(--primary-glow));
+    animation: heroFloat 3s ease-in-out infinite;
+}
+
+@keyframes heroFloat {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-8px); }
+}
+
+.student-hero h2 {
+    font-size: 26px;
+    font-weight: 900;
+    color: var(--text);
+    margin-bottom: var(--space-2);
+    letter-spacing: -0.5px;
+}
+
+.student-hero p {
+    font-size: 14px;
+    color: var(--text-3);
+    font-weight: 500;
+    line-height: 1.6;
+}
+
+/* ============================================================
+   البحث
+   ============================================================ */
+.student-search-section {
+    margin-bottom: var(--space-5);
+}
+
+.student-search-box {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background: var(--surface);
+    border: 2px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    transition: all var(--t-normal);
+}
+
+.student-search-box:focus-within {
+    border-color: var(--primary);
+    box-shadow: var(--shadow-gold), var(--shadow-md);
+}
+
+.student-search-box > i:first-child {
+    position: absolute;
+    right: 20px;
+    color: var(--text-4);
+    font-size: 18px;
+    pointer-events: none;
+    transition: color var(--t-fast);
+}
+
+.student-search-box:focus-within > i:first-child {
+    color: var(--primary);
+}
+
+.student-search-box input {
+    flex: 1;
+    padding: 20px 56px 20px 56px;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text);
+    font-family: var(--font);
+    width: 100%;
+}
+
+.student-search-box input::placeholder {
+    color: var(--text-4);
+    font-weight: 500;
+}
+
+.student-clear-btn {
+    position: absolute;
+    left: 12px;
+    width: 34px;
+    height: 34px;
+    border-radius: var(--radius-full);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-3);
+    font-size: 13px;
+    transition: all var(--t-fast);
+}
+
+.student-clear-btn:hover {
+    background: var(--danger-bg);
+    color: var(--danger);
+}
+
+.student-search-box.has-value .student-clear-btn {
+    display: flex;
+}
+
+/* ============================================================
+   النتائج
+   ============================================================ */
+.student-results {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    min-height: 200px;
+}
+
+.student-empty {
+    text-align: center;
+    padding: var(--space-8) var(--space-4);
+    color: var(--text-4);
+}
+
+.student-empty i {
+    font-size: 56px;
+    display: block;
+    margin-bottom: var(--space-4);
+    opacity: 0.35;
+}
+
+.student-empty h3 {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-3);
+    margin-bottom: 4px;
+}
+
+.student-empty p {
+    font-size: 13px;
+    color: var(--text-4);
+    font-weight: 500;
+}
+
+/* بطاقة نتيجة */
+.student-result-card {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-4);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    transition: all var(--t-normal);
+    animation: resultIn 0.35s ease both;
+}
+
+@keyframes resultIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.student-result-card:hover {
+    box-shadow: var(--shadow-md);
+    border-color: var(--border-2);
+    transform: translateY(-2px);
+}
+
+.student-result-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-sm);
+    background: linear-gradient(135deg, var(--gold-400), var(--gold-600));
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+    box-shadow: var(--shadow-gold);
+}
+
+.student-result-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.student-result-info strong {
+    display: block;
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--text);
+    margin-bottom: 2px;
+    word-break: break-word;
+}
+
+.student-result-info span {
+    font-size: 12px;
+    color: var(--text-3);
+    font-weight: 500;
+}
+
+.student-result-download {
+    padding: 10px 18px;
+    border-radius: var(--radius-sm);
+    background: linear-gradient(135deg, var(--gold-500), var(--gold-600));
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: all var(--t-fast);
+    flex-shrink: 0;
+    border: none;
+    cursor: pointer;
+    font-family: var(--font);
+}
+
+.student-result-download:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-gold);
+}
+
+.student-result-download:active {
+    transform: translateY(0) scale(0.96);
+}
+
+.student-result-download:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* حالة عدم العثور */
+.student-no-result {
+    text-align: center;
+    padding: var(--space-8) var(--space-4);
+}
+
+.student-no-result i {
+    font-size: 56px;
+    color: var(--warning);
+    opacity: 0.6;
+    margin-bottom: var(--space-3);
+    display: block;
+}
+
+.student-no-result h3 {
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--text-2);
+    margin-bottom: var(--space-2);
+}
+
+.student-no-result p {
+    font-size: 13px;
+    color: var(--text-3);
+    font-weight: 500;
+    line-height: 1.6;
+}
+
+/* ============================================================
+   القسم الجماعي
+   ============================================================ */
+.student-bulk {
+    margin-top: var(--space-6);
+}
+
+.student-divider {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    margin-bottom: var(--space-4);
+    color: var(--text-4);
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.student-divider::before,
+.student-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+}
+
+.student-bulk-btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    padding: var(--space-5);
+    background: var(--surface);
+    border: 2px dashed var(--border-2);
+    border-radius: var(--radius-md);
+    text-align: right;
+    cursor: pointer;
+    transition: all var(--t-normal);
+    font-family: var(--font);
+}
+
+.student-bulk-btn:hover {
+    border-color: var(--primary);
+    background: var(--primary-soft);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+}
+
+.student-bulk-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.student-bulk-btn > i {
+    width: 52px;
+    height: 52px;
+    border-radius: var(--radius-sm);
+    background: linear-gradient(135deg, var(--gold-400), var(--gold-600));
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+    box-shadow: var(--shadow-gold);
+}
+
+.student-bulk-btn > div {
+    flex: 1;
+    min-width: 0;
+}
+
+.student-bulk-btn strong {
+    display: block;
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--text);
+    margin-bottom: 2px;
+}
+
+.student-bulk-btn span {
+    font-size: 12px;
+    color: var(--text-3);
+    font-weight: 500;
+}
+
+/* ============================================================
+   الفوتر
+   ============================================================ */
+.student-footer {
+    margin-top: auto;
+    padding-top: var(--space-6);
+    text-align: center;
+}
+
+.student-footer p {
+    font-size: 12px;
+    color: var(--text-4);
+    font-weight: 500;
+}
+
+/* ============================================================
+   التجاوب
+   ============================================================ */
+@media (max-width: 480px) {
+    .student-page {
+        padding: var(--space-4) var(--space-3) var(--space-6);
+    }
+
+    .student-hero h2 {
+        font-size: 22px;
+    }
+
+    .student-hero-icon {
+        font-size: 56px;
+    }
+
+    .student-search-box input {
+        padding: 16px 50px 16px 50px;
+        font-size: 15px;
+    }
+
+    .student-result-card {
+        flex-direction: column;
+        text-align: center;
+        padding: var(--space-4) var(--space-3);
+    }
+
+    .student-result-download {
+        width: 100%;
+        justify-content: center;
+    }
+}

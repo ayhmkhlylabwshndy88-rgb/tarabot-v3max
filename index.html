@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="theme-color" content="#b8860b">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="description" content="منصة ترابط - نظام إدارة الشهادات">
+
+    <title>ترابط - لوحة التحكم</title>
+
+    <!-- الخطوط -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@400;700;800&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- المكتبات -->
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+
+    <!-- التصميم -->
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/pages.css">
+    <link rel="stylesheet" href="css/loader.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+    <!-- PWA -->
+    <link rel="manifest" href="manifest.json">
+</head>
+<body>
+
+    <!-- ============================================================
+         شاشة البداية
+         ============================================================ -->
+    <div id="splashScreen" class="splash-screen">
+        <div class="splash-content">
+            <div class="splash-logo">🕌</div>
+            <h1 class="splash-title">ترابط</h1>
+            <p class="splash-subtitle">منصة إدارة الشهادات</p>
+            <div class="splash-loader">
+                <span></span><span></span><span></span>
+            </div>
+            <span class="splash-version">الإصدار 3.0</span>
+        </div>
+    </div>
+
+    <!-- ============================================================
+         التطبيق
+         ============================================================ -->
+    <div id="app" class="app">
+
+        <!-- ========================================================
+             القائمة الجانبية
+             ======================================================== -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-brand">
+                    <div class="sidebar-logo">🕌</div>
+                    <div class="sidebar-brand-text">
+                        <h2>ترابط</h2>
+                        <span>v3.0</span>
+                    </div>
+                </div>
+                <button class="sidebar-close-btn" id="sidebarCloseBtn" aria-label="إغلاق">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <div class="sidebar-profile">
+                <div class="profile-avatar">
+                    <i class="fas fa-user-tie"></i>
+                </div>
+                <div class="profile-info">
+                    <h3>المشرف</h3>
+                    <span>admin@tarabot</span>
+                </div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <span class="nav-section-title">الرئيسية</span>
+                <a href="#dashboard" class="nav-item active" data-page="dashboard">
+                    <i class="fas fa-th-large"></i>
+                    <span>لوحة التحكم</span>
+                </a>
+                <a href="#certificates" class="nav-item" data-page="certificates">
+                    <i class="fas fa-certificate"></i>
+                    <span>الشهادات</span>
+                    <span class="nav-badge" id="navCertificatesCount"></span>
+                </a>
+                <a href="#participants" class="nav-item" data-page="participants">
+                    <i class="fas fa-users"></i>
+                    <span>المشاركون</span>
+                    <span class="nav-badge" id="navParticipantsCount"></span>
+                </a>
+
+                <span class="nav-section-title">الإدارة</span>
+                <a href="#export" class="nav-item" data-page="export">
+                    <i class="fas fa-file-export"></i>
+                    <span>التصدير</span>
+                </a>
+                <a href="#settings" class="nav-item" data-page="settings">
+                    <i class="fas fa-sliders-h"></i>
+                    <span>الإعدادات</span>
+                </a>
+
+                <span class="nav-section-title">المساعدة</span>
+                <a href="#guide" class="nav-item" data-page="guide">
+                    <i class="fas fa-book"></i>
+                    <span>دليل الاستخدام</span>
+                </a>
+                <a href="#about" class="nav-item" data-page="about">
+                    <i class="fas fa-info-circle"></i>
+                    <span>حول المنصة</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <button class="sidebar-theme-btn" id="sidebarThemeBtn">
+                    <i class="fas fa-moon"></i>
+                    <span>الوضع الليلي</span>
+                </button>
+                <a href="student.html" class="sidebar-student-btn" target="_blank">
+                    <i class="fas fa-user-graduate"></i>
+                    <span>صفحة الطالب</span>
+                </a>
+            </div>
+        </aside>
+
+        <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+        <!-- ========================================================
+             المحتوى الرئيسي
+             ======================================================== -->
+        <main class="main">
+            <header class="header">
+                <div class="header-start">
+                    <button class="header-btn menu-btn" id="menuBtn" aria-label="القائمة">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <div class="header-brand-mobile">
+                        <span class="header-brand-logo">🕌</span>
+                        <span class="header-brand-name">ترابط</span>
+                    </div>
+                </div>
+                <div class="header-end">
+                    <span class="header-date" id="headerDate"></span>
+                    <button class="header-btn" id="notifBtn" aria-label="الإشعارات">
+                        <i class="fas fa-bell"></i>
+                        <span class="notif-dot"></span>
+                    </button>
+                    <button class="header-btn" id="themeBtn" aria-label="الوضع الليلي">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </div>
+            </header>
+
+            <div class="main-content" id="mainContent">
+
+                <!-- ============================================
+                     صفحة لوحة التحكم
+                     ============================================ -->
+                <div class="page active" id="page-dashboard">
+
+                    <div class="welcome-banner">
+                        <div class="welcome-banner-content">
+                            <h1>مرحباً بك في ترابط 🕌</h1>
+                            <p>منصة إدارة الشهادات للمبادرات التعليمية</p>
+                            <div class="welcome-actions">
+                                <button class="btn btn-sm" onclick="Participants.openAddModal()">
+                                    <i class="fas fa-user-plus"></i>
+                                    إضافة مشارك
+                                </button>
+                                <button class="btn btn-sm" onclick="UI.navigate('certificates')">
+                                    <i class="fas fa-certificate"></i>
+                                    الشهادات
+                                </button>
+                                <button class="btn btn-sm" onclick="UI.navigate('export')">
+                                    <i class="fas fa-file-export"></i>
+                                    التصدير
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon gold">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="stat-info">
+                                <div class="stat-label">المشاركون</div>
+                                <div class="stat-value" id="statParticipants">0</div>
+                            </div>
+                        </div>
+
+                        <div class="stat-card">
+                            <div class="stat-icon green">
+                                <i class="fas fa-certificate"></i>
+                            </div>
+                            <div class="stat-info">
+                                <div class="stat-label">الشهادات</div>
+                                <div class="stat-value" id="statCertificates">0</div>
+                            </div>
+                        </div>
+
+                        <div class="stat-card">
+                            <div class="stat-icon blue">
+                                <i class="fas fa-image"></i>
+                            </div>
+                            <div class="stat-info">
+                                <div class="stat-label">حالة القالب</div>
+                                <div class="stat-value" id="statTemplate">—</div>
+                            </div>
+                        </div>
+
+                        <div class="stat-card">
+                            <div class="stat-icon orange">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="stat-info">
+                                <div class="stat-label">آخر تحديث</div>
+                                <div class="stat-value" id="statLastUpdate" style="font-size: 15px;">—</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-grid">
+
+                        <div class="card card-elevated">
+                            <div class="card-header">
+                                <h3>
+                                    <i class="fas fa-clock-rotate-left"></i>
+                                    آخر النشاطات
+                                </h3>
+                                <button class="btn btn-ghost btn-xs" onclick="Activities.clear()">
+                                    <i class="fas fa-trash"></i>
+                                    مسح
+                                </button>
+                            </div>
+                            <div class="card-body">
+                                <div class="activity-list" id="activityList">
+                                    <div style="text-align:center;padding:30px 20px;color:var(--text-3);">
+                                        <i class="fas fa-inbox" style="font-size:32px;display:block;margin-bottom:12px;opacity:0.3;"></i>
+                                        لا توجد نشاطات بعد
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card card-elevated">
+                            <div class="card-header">
+                                <h3>
+                                    <i class="fas fa-bolt"></i>
+                                    إجراءات سريعة
+                                </h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="quick-actions">
+                                    <button class="quick-action" onclick="Participants.openAddModal()">
+                                        <i class="fas fa-user-plus"></i>
+                                        <span>إضافة مشارك</span>
+                                    </button>
+                                    <button class="quick-action" onclick="Participants.openBulkModal()">
+                                        <i class="fas fa-paste"></i>
+                                        <span>إضافة دفعة</span>
+                                    </button>
+                                    <button class="quick-action" onclick="Export.exportAllPDF()">
+                                        <i class="fas fa-file-pdf"></i>
+                                        <span>تصدير PDF</span>
+                                    </button>
+                                    <button class="quick-action" onclick="Export.exportAllImages()">
+                                        <i class="fas fa-file-archive"></i>
+                                        <span>تصدير صور</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ============================================
+                     صفحة الشهادات
+                     ============================================ -->
+                <div class="page" id="page-certificates">
+
+                    <div class="page-header">
+                        <h1 class="page-title">
+                            <i class="fas fa-certificate"></i>
+                            محرر الشهادة
+                        </h1>
+                        <p class="page-subtitle">
+                            ارفع صورة الشهادة واضبط موقع الاسم
+                        </p>
+                    </div>
+
+                    <div class="certificates-layout">
+
+                        <div class="card card-elevated">
+                            <div class="card-header">
+                                <h3>
+                                    <i class="fas fa-edit"></i>
+                                    إعدادات الشهادة
+                                </h3>
+                                <button class="btn btn-ghost btn-xs" onclick="Certificate.reset()">
+                                    <i class="fas fa-undo"></i>
+                                    إعادة ضبط
+                                </button>
+                            </div>
+                            <div class="card-body">
+
+                                <div class="preview-wrapper">
+                                    <div class="preview-container">
+                                        <canvas class="preview-canvas" id="previewCanvas"></canvas>
+                                        <div class="preview-placeholder" id="previewPlaceholder">
+                                            <i class="fas fa-image"></i>
+                                            <h4>لا توجد صورة</h4>
+                                            <p>ارفع صورة الشهادة للبدء</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label">صورة الشهادة</label>
+                                    <div class="upload-zone">
+                                        <input type="file" id="certImageInput" accept="image/*">
+                                        <button class="btn btn-primary btn-sm" onclick="Certificate.uploadImage()">
+                                            <i class="fas fa-cloud-upload-alt"></i>
+                                            اختيار صورة
+                                        </button>
+                                        <span class="upload-status" id="certStatus">
+                                            <i class="fas fa-exclamation-circle"></i>
+                                            لا توجد صورة
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="controls-grid">
+
+                                    <div class="form-group">
+                                        <label class="form-label">حجم الخط</label>
+                                        <input type="number"
+                                               class="form-input"
+                                               id="fontSize"
+                                               min="10"
+                                               max="200"
+                                               value="60">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="form-label">لون النص</label>
+                                        <input type="color"
+                                               class="form-color"
+                                               id="textColor"
+                                               value="#1a1208">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="form-label">نوع الخط</label>
+                                        <select class="form-select" id="fontFamily">
+                                            <option value="Cairo">Cairo</option>
+                                            <option value="Amiri">Amiri</option>
+                                            <option value="Tajawal">Tajawal</option>
+                                            <option value="Almarai">Almarai</option>
+                                            <option value="Arial">Arial</option>
+                                            <option value="Tahoma">Tahoma</option>
+                                        </select>
+                                    </div>
+
+                                </div>
+
+                                <div class="position-control">
+                                    <div class="position-display">
+                                        <span>X: <strong id="displayX">600</strong></span>
+                                        <span>Y: <strong id="displayY">425</strong></span>
+                                    </div>
+
+                                    <div class="position-pad">
+                                        <button class="pos-btn" data-dir="up" onclick="Certificate.move('up')">
+                                            <i class="fas fa-arrow-up"></i>
+                                        </button>
+                                        <button class="pos-btn" data-dir="left" onclick="Certificate.move('left')">
+                                            <i class="fas fa-arrow-right"></i>
+                                        </button>
+                                        <div class="pos-center">
+                                            <i class="fas fa-crosshairs"></i>
+                                        </div>
+                                        <button class="pos-btn" data-dir="right" onclick="Certificate.move('right')">
+                                            <i class="fas fa-arrow-left"></i>
+                                        </button>
+                                        <button class="pos-btn" data-dir="down" onclick="Certificate.move('down')">
+                                            <i class="fas fa-arrow-down"></i>
+                                        </button>
+                                    </div>
+
+                                    <div class="form-hint">
+                                        اضغط على الأسهم لتحريك الاسم
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="card card-elevated">
+                            <div class="card-header">
+                                <h3>
+                                    <i class="fas fa-list"></i>
+                                    معاينة الأسماء
+                                </h3>
+                                <span class="badge badge-primary" id="certPreviewCount">0</span>
+                            </div>
+                            <div class="card-body no-padding">
+                                <div class="table-wrapper">
+                                    <table class="table table-cards">
+                                        <thead>
+                                            <tr>
+                                                <th>الاسم</th>
+                                                <th class="col-actions">إجراءات</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="certPreviewTbody">
+                                            <tr>
+                                                <td colspan="2" class="empty-state">
+                                                    <i class="fas fa-inbox"></i>
+                                                    <p>لا توجد أسماء</p>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ============================================
+                     صفحة المشاركين
+                     ============================================ -->
+                <div class="page" id="page-participants">
+
+                    <div class="page-header">
+                        <h1 class="page-title">
+                            <i class="fas fa-users"></i>
+                            المشاركون
+                        </h1>
+                        <p class="page-subtitle">
+                            إدارة الأسماء المشاركة في الشهادات
+                        </p>
+                    </div>
+
+                    <div class="participants-toolbar">
+                        <div class="search-box" id="searchBox">
+                            <i class="fas fa-search"></i>
+                            <input type="text" id="searchInput" placeholder="ابحث عن اسم...">
+                            <button class="clear-btn" id="clearSearchBtn" aria-label="مسح">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+
+                        <div class="toolbar-actions">
+                            <button class="btn btn-primary btn-sm" onclick="Participants.openAddModal()">
+                                <i class="fas fa-plus"></i>
+                                إضافة
+                            </button>
+                            <button class="btn btn-secondary btn-sm" onclick="Participants.openBulkModal()">
+                                <i class="fas fa-paste"></i>
+                                دفعة
+                            </button>
+                            <button class="btn btn-outline btn-sm" onclick="Participants.openImportModal()">
+                                <i class="fas fa-file-import"></i>
+                                ملف
+                            </button>
+                            <button class="btn btn-ghost btn-sm" onclick="Participants.toggleSort()">
+                                <i class="fas fa-sort-alpha-down"></i>
+                                ترتيب
+                            </button>
+                            <button class="btn btn-danger btn-sm" onclick="Participants.clearAll()">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:16px;">
+                        <span class="badge badge-primary" style="font-size:13px;padding:6px 14px;">
+                            <i class="fas fa-users"></i>
+                            <span id="totalCount">0</span> مشارك
+                        </span>
+                        <span class="badge badge-neutral" id="filteredBadge" style="font-size:13px;padding:6px 14px;display:none;">
+                            <i class="fas fa-filter"></i>
+                            <span id="filteredCount">0</span> نتيجة
+                        </span>
+                    </div>
+
+                    <div class="card card-elevated">
+                        <div class="table-wrapper">
+                            <table class="table table-cards">
+                                <thead>
+                                    <tr>
+                                        <th class="col-index">#</th>
+                                        <th>الاسم</th>
+                                        <th>تاريخ الإضافة</th>
+                                        <th class="col-actions">إجراءات</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="participantsTbody">
+                                    <tr>
+                                        <td colspan="4" class="empty-state">
+                                            <i class="fas fa-inbox"></i>
+                                            <p>لا يوجد مشاركون</p>
+                                            <span>ابدأ بإضافة الأسماء</span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ============================================
+                     صفحة التصدير
+                     ============================================ -->
+                <div class="page" id="page-export">
+
+                    <div class="page-header">
+                        <h1 class="page-title">
+                            <i class="fas fa-file-export"></i>
+                            التصدير
+                        </h1>
+                        <p class="page-subtitle">
+                            صدّر الشهادات بصيغ متعددة
+                        </p>
+                    </div>
+
+                    <div class="export-grid">
+
+                        <div class="export-card">
+                            <div class="export-card-icon red">
+                                <i class="fas fa-file-pdf"></i>
+                            </div>
+                            <h3>تصدير PDF</h3>
+                            <p>ملف PDF واحد يحتوي على كل الشهادات، كل شهادة في صفحة منفصلة.</p>
+                            <button class="btn btn-primary btn-block" id="exportPdfBtn" onclick="Export.exportAllPDF()">
+                                <i class="fas fa-download"></i>
+                                تصدير PDF
+                            </button>
+                        </div>
+
+                        <div class="export-card">
+                            <div class="export-card-icon blue">
+                                <i class="fas fa-file-archive"></i>
+                            </div>
+                            <h3>تصدير صور ZIP</h3>
+                            <p>ملف ZIP يحتوي على صورة لكل شهادة، منفصلة وبأعلى جودة.</p>
+                            <button class="btn btn-primary btn-block" id="exportZipBtn" onclick="Export.exportAllImages()">
+                                <i class="fas fa-download"></i>
+                                تصدير صور
+                            </button>
+                        </div>
+
+                        <div class="export-card">
+                            <div class="export-card-icon green">
+                                <i class="fas fa-file-excel"></i>
+                            </div>
+                            <h3>تصدير Excel</h3>
+                            <p>ملف Excel يحتوي على كل الأسماء المسجلة، مع التاريخ.</p>
+                            <button class="btn btn-secondary btn-block" onclick="Export.exportExcel()">
+                                <i class="fas fa-download"></i>
+                                تصدير Excel
+                            </button>
+                        </div>
+
+                        <div class="export-card">
+                            <div class="export-card-icon gold">
+                                <i class="fas fa-database"></i>
+                            </div>
+                            <h3>نسخة احتياطية</h3>
+                            <p>ملف JSON يحتوي على كل البيانات (الأسماء + الإعدادات + الصورة).</p>
+                            <button class="btn btn-secondary btn-block" onclick="Export.backup()">
+                                <i class="fas fa-download"></i>
+                                نسخة احتياطية
+                            </button>
+                            <button class="btn btn-ghost btn-block btn-sm" onclick="Export.openRestore()">
+                                <i class="fas fa-upload"></i>
+                                استعادة
+                            </button>
+                        </div>
+
+                    </div>
+
+                    <div class="card card-elevated" style="margin-top:20px;">
+                        <div class="card-header">
+                            <h3>
+                                <i class="fas fa-user-check"></i>
+                                شهادة لاسم واحد
+                            </h3>
+                        </div>
+                        <div class="card-body">
+                            <p style="color:var(--text-3);font-size:13px;margin-bottom:16px;">
+                                أدخل الاسم لإنشاء شهادة خاصة به فقط.
+                            </p>
+                            <div style="display:flex;gap:12px;flex-wrap:wrap;">
+                                <input type="text"
+                                       class="form-input"
+                                       id="singleNameInput"
+                                       placeholder="أدخل الاسم..."
+                                       style="flex:1;min-width:200px;">
+                                <button class="btn btn-primary" onclick="Export.exportSinglePDF()">
+                                    <i class="fas fa-file-pdf"></i>
+                                    إنشاء
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ============================================
+                     صفحة الإعدادات
+                     ============================================ -->
+                <div class="page" id="page-settings">
+
+                    <div class="page-header">
+                        <h1 class="page-title">
+                            <i class="fas fa-sliders-h"></i>
+                            الإعدادات
+                        </h1>
+                        <p class="page-subtitle">
+                            تخصيص تجربة الاستخدام
+                        </p>
+                    </div>
+
+                    <div class="card card-elevated" style="max-width:700px;">
+
+                        <div class="card-header">
+                            <h3>
+                                <i class="fas fa-palette"></i>
+                                المظهر
+                            </h3>
+                        </div>
+                        <div class="card-body">
+
+                            <div class="setting-row">
+                                <div class="setting-info">
+                                    <h4>الوضع الليلي</h4>
+                                    <p>تجربة مريحة في الإضاءة المنخفضة</p>
+                                </div>
+                                <label class="switch">
+                                    <input type="checkbox" id="darkModeToggle">
+                                    <span class="switch-slider"></span>
+                                </label>
+                            </div>
+
+                            <div class="setting-row">
+                                <div class="setting-info">
+                                    <h4>حجم الخط العام</h4>
+                                    <p>تغيير حجم النص في كل الواجهة</p>
+                                </div>
+                                <div style="display:flex;align-items:center;gap:8px;">
+                                    <input type="range"
+                                           id="fontSizeRange"
+                                           min="13"
+                                           max="20"
+                                           value="15"
+                                           style="width:120px;">
+                                    <span id="fontSizeDisplay" style="font-size:13px;font-weight:700;color:var(--text-3);min-width:36px;">
+                                        15px
+                                    </span>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="card-header" style="border-top:1px solid var(--border);">
+                            <h3>
+                                <i class="fas fa-database"></i>
+                                البيانات
+                            </h3>
+                        </div>
+                        <div class="card-body">
+
+                            <div class="setting-row">
+                                <div class="setting-info">
+                                    <h4>إجمالي المشاركين</h4>
+                                    <p>عدد الأسماء المسجلة حالياً</p>
+                                </div>
+                                <span class="badge badge-primary" id="settingsParticipantCount">0</span>
+                            </div>
+
+                            <div class="setting-row">
+                                <div class="setting-info">
+                                    <h4>مسح النشاطات</h4>
+                                    <p>حذف سجل النشاطات بدون المساس بالأسماء</p>
+                                </div>
+                                <button class="btn btn-secondary btn-sm" onclick="Activities.clear()">
+                                    <i class="fas fa-eraser"></i>
+                                    مسح
+                                </button>
+                            </div>
+
+                            <div class="setting-row">
+                                <div class="setting-info">
+                                    <h4>حذف كل البيانات</h4>
+                                    <p style="color:var(--danger);">⚠️ سيتم حذف كل الأسماء والإعدادات</p>
+                                </div>
+                                <button class="btn btn-danger btn-sm" onclick="Settings.clearAllData()">
+                                    <i class="fas fa-trash"></i>
+                                    حذف الكل
+                                </button>
+                            </div>
+
+                        </div>
+
+                        <div class="card-header" style="border-top:1px solid var(--border);">
+                            <h3>
+                                <i class="fas fa-info-circle"></i>
+                                معلومات
+                            </h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="setting-row">
+                                <div class="setting-info">
+                                    <h4>الإصدار</h4>
+                                </div>
+                                <span class="badge badge-neutral" id="appVersion">3.0.0</span>
+                            </div>
+                            <div class="setting-row">
+                                <div class="setting-info">
+                                    <h4>حجم التخزين المستخدم</h4>
+                                </div>
+                                <span class="badge badge-neutral" id="storageSize">—</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- ============================================
+                     صفحة دليل الاستخدام
+                     ============================================ -->
+                <div class="page" id="page-guide">
+
+                    <div class="page-header">
+                        <h1 class="page-title">
+                            <i class="fas fa-book"></i>
+                            دليل الاستخدام
+                        </h1>
+                        <p class="page-subtitle">
+                            تعرّف على كيفية استخدام المنصة خطوة بخطوة
+                        </p>
+                    </div>
+
+                    <div style="max-width:800px;">
+
+                        <div class="guide-section">
+                            <h3>
+                                <i class="fas fa-user-plus"></i>
+                                1. إضافة المشاركين
+                            </h3>
+                            <div class="guide-steps">
+                                <div class="guide-step">
+                                    <div class="step-num">1</div>
+                                    <div class="step-body">
+                                        <h4>إضافة فردية</h4>
+                                        <p>اذهب لصفحة المشاركين، واضغط "إضافة"، ثم أدخل الاسم كاملاً.</p>
+                                    </div>
+                                </div>
+                                <div class="guide-step">
+                                    <div class="step-num">2</div>
+                                    <div class="step-body">
+                                        <h4>إضافة دفعة واحدة</h4>
+                                        <p>اضغط "دفعة"، والصق الأسماء (كل اسم في سطر منفصل).</p>
+                                    </div>
+                                </div>
+                                <div class="guide-step">
+                                    <div class="step-num">3</div>
+                                    <div class="step-body">
+                                        <h4>استيراد من ملف</h4>
+                                        <p>اضغط "ملف"، واختر ملف Excel أو TXT أو CSV فيه الأسماء.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="guide-section">
+                            <h3>
+                                <i class="fas fa-certificate"></i>
+                                2. تخصيص الشهادة
+                            </h3>
+                            <div class="guide-steps">
+                                <div class="guide-step">
+                                    <div class="step-num">1</div>
+                                    <div class="step-body">
+                                        <h4>رفع صورة الشهادة</h4>
+                                        <p>من صفحة الشهادات، ارفع صورة القالب التي تريد استخدامها.</p>
+                                    </div>
+                                </div>
+                                <div class="guide-step">
+                                    <div class="step-num">2</div>
+                                    <div class="step-body">
+                                        <h4>ضبط موقع الاسم</h4>
+                                        <p>استخدم أزرار الأسهم لتحريك الاسم حتى يظهر في المكان المناسب.</p>
+                                    </div>
+                                </div>
+                                <div class="guide-step">
+                                    <div class="step-num">3</div>
+                                    <div class="step-body">
+                                        <h4>تخصيص الخط</h4>
+                                        <p>اختر حجم الخط ولونه ونوعه من لوحة التحكم.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="guide-section">
+                            <h3>
+                                <i class="fas fa-file-export"></i>
+                                3. تصدير الشهادات
+                            </h3>
+                            <div class="guide-steps">
+                                <div class="guide-step">
+                                    <div class="step-num">1</div>
+                                    <div class="step-body">
+                                        <h4>تصدير PDF</h4>
+                                        <p>كل الشهادات في ملف PDF واحد، كل شهادة في صفحة منفصلة.</p>
+                                    </div>
+                                </div>
+                                <div class="guide-step">
+                                    <div class="step-num">2</div>
+                                    <div class="step-body">
+                                        <h4>تصدير صور ZIP</h4>
+                                        <p>كل شهادة كصورة منفصلة داخل ملف مضغوط.</p>
+                                    </div>
+                                </div>
+                                <div class="guide-step">
+                                    <div class="step-num">3</div>
+                                    <div class="step-body">
+                                        <h4>شهادة لاسم واحد</h4>
+                                        <p>أدخل اسم واحد للحصول على شهادته فقط.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tips-box">
+                            <h4>
+                                <i class="fas fa-lightbulb"></i>
+                                نصائح مهمة
+                            </h4>
+                            <div class="tips-list">
+                                <div class="tip-item">استخدم صورة قالب بجودة عالية (1200×850 أو أكبر)</div>
+                                <div class="tip-item">أضف الأسماء كلها قبل التصدير لتوفير الوقت</div>
+                                <div class="tip-item">خذ نسخة احتياطية من الإعدادات > البيانات</div>
+                                <div class="tip-item">المنصة تعمل بدون إنترنت بعد التحميل الأول</div>
+                                <div class="tip-item">استخدم الوضع الليلي للراحة البصرية</div>
+                                <div class="tip-item">صفحة الطالب تسمح لكل شخص بتحميل شهادته</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ============================================
+                     صفحة حول
+                     ============================================ -->
+                <div class="page" id="page-about">
+
+                    <div class="page-header">
+                        <h1 class="page-title">
+                            <i class="fas fa-info-circle"></i>
+                            حول المنصة
+                        </h1>
+                    </div>
+
+                    <div class="about-hero">
+                        <div class="about-logo">🕌</div>
+                        <h2>ترابط</h2>
+                        <p>منصة إدارة الشهادات للمبادرات التعليمية — صُممت لتسهيل إنشاء وتوزيع الشهادات بأسلوب احترافي وسهل.</p>
+                    </div>
+
+                    <div class="about-info">
+                        <div class="about-info-item">
+                            <i class="fas fa-code-branch"></i>
+                            <h4>الإصدار</h4>
+                            <p>3.0.0</p>
+                        </div>
+                        <div class="about-info-item">
+                            <i class="fas fa-calendar"></i>
+                            <h4>سنة الإصدار</h4>
+                            <p>2025</p>
+                        </div>
+                        <div class="about-info-item">
+                            <i class="fas fa-users"></i>
+                            <h4>الفريق</h4>
+                            <p>فريق ترابط</p>
+                        </div>
+                        <div class="about-info-item">
+                            <i class="fas fa-shield-halved"></i>
+                            <h4>الخصوصية</h4>
+                            <p>بيانات محلية</p>
+                        </div>
+                    </div>
+
+                    <div class="card card-elevated" style="margin-top:20px;">
+                        <div class="card-body">
+                            <h3 style="font-size:16px;font-weight:800;margin-bottom:12px;color:var(--text);">
+                                <i class="fas fa-star" style="color:var(--primary);"></i>
+                                المميزات
+                            </h3>
+                            <div class="tips-list">
+                                <div class="tip-item">دعم حتى 500 شهادة في التصدير</div>
+                                <div class="tip-item">رفع صورة أي قالب شهادة</div>
+                                <div class="tip-item">تحكم كامل بموقع وحجم ولون الاسم</div>
+                                <div class="tip-item">تصدير PDF و ZIP صور</div>
+                                <div class="tip-item">صفحة خاصة للطالب لتحميل شهادته</div>
+                                <div class="tip-item">واجهة عربية كاملة RTL</div>
+                                <div class="tip-item">يعمل على الجوال والحاسوب</div>
+                                <div class="tip-item">وضع ليلي ونهاري</div>
+                                <div class="tip-item">نسخ احتياطي واستعادة</div>
+                                <div class="tip-item">بدون تسجيل دخول — كل شيء محلي</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- ========================================================
+                 الشريط السفلي للجوال
+                 ======================================================== -->
+            <nav class="mobile-nav">
+                <a href="#dashboard" class="mobile-nav-item active" data-page="dashboard">
+                    <i class="fas fa-th-large"></i>
+                    <span>الرئيسية</span>
+                </a>
+                <a href="#certificates" class="mobile-nav-item" data-page="certificates">
+                    <i class="fas fa-certificate"></i>
+                    <span>الشهادات</span>
+                </a>
+                <a href="#participants" class="mobile-nav-item" data-page="participants">
+                    <i class="fas fa-users"></i>
+                    <span>المشاركون</span>
+                </a>
+                <a href="#export" class="mobile-nav-item" data-page="export">
+                    <i class="fas fa-file-export"></i>
+                    <span>التصدير</span>
+                </a>
+                <a href="#settings" class="mobile-nav-item" data-page="settings">
+                    <i class="fas fa-sliders-h"></i>
+                    <span>الإعدادات</span>
+                </a>
+            </nav>
+        </main>
+    </div>
+
+    <!-- ============================================================
+         حاويات عامة
+         ============================================================ -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="loading-box">
+            <div class="loading-spinner"></div>
+            <p class="loading-text" id="loadingText">جاري المعالجة...</p>
+            <div class="loading-progress">
+                <div class="loading-progress-fill" id="loadingProgressFill"></div>
+            </div>
+            <span class="loading-percent" id="loadingPercent">0%</span>
+        </div>
+    </div>
+
+    <div id="modalContainer"></div>
+
+    <!-- ============================================================
+         السكربتات
+         ============================================================ -->
+    <script src="js/config.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/activities.js"></script>
+    <script src="js/participants.js"></script>
+    <script src="js/certificate.js"></script>
+    <script src="js/export.js"></script>
+    <script src="js/settings.js"></script>
+    <script src="js/app.js"></script>
+    <!-- <script src="js/sw-register.js"></script> -->
+
+</body>
+</html>

@@ -1,0 +1,331 @@
+/* ============================================================
+   ترابط v3.0 — المتغيرات والأساسيات
+   ============================================================ */
+
+:root {
+    /* الذهبي */
+    --gold-50:  #fdfaf1;
+    --gold-100: #faf3df;
+    --gold-200: #f3e5b8;
+    --gold-300: #e8d089;
+    --gold-400: #d4a017;
+    --gold-500: #b8860b;
+    --gold-600: #96690a;
+    --gold-700: #6f4f08;
+
+    --primary:       var(--gold-500);
+    --primary-dark:  var(--gold-700);
+    --primary-light: var(--gold-400);
+    --primary-soft:  rgba(184, 134, 11, 0.08);
+    --primary-glow:  rgba(184, 134, 11, 0.25);
+
+    /* الأسطح */
+    --bg:        #faf6ef;
+    --bg-alt:    #f3ede1;
+    --surface:   #ffffff;
+    --surface-2: #fdfaf3;
+    --surface-3: #f5f0e8;
+
+    /* النصوص */
+    --text:   #1a1208;
+    --text-2: #4a3728;
+    --text-3: #8b7355;
+    --text-4: #c4b5a5;
+
+    /* الحدود */
+    --border:   rgba(0, 0, 0, 0.06);
+    --border-2: rgba(184, 134, 11, 0.12);
+
+    /* الحالات */
+    --success:    #16a34a;
+    --success-bg: rgba(22, 163, 74, 0.1);
+    --danger:     #dc2626;
+    --danger-bg:  rgba(220, 38, 38, 0.1);
+    --warning:    #f59e0b;
+    --warning-bg: rgba(245, 158, 11, 0.1);
+    --info:       #0284c7;
+    --info-bg:    rgba(2, 132, 199, 0.1);
+
+    /* الظلال */
+    --shadow-xs:   0 1px 2px rgba(0, 0, 0, 0.04);
+    --shadow-sm:   0 2px 8px rgba(0, 0, 0, 0.06);
+    --shadow-md:   0 4px 16px rgba(0, 0, 0, 0.08);
+    --shadow-lg:   0 12px 32px rgba(0, 0, 0, 0.12);
+    --shadow-xl:   0 24px 64px rgba(0, 0, 0, 0.18);
+    --shadow-gold: 0 8px 24px rgba(184, 134, 11, 0.18);
+
+    /* الحواف */
+    --radius-xs:   6px;
+    --radius-sm:   10px;
+    --radius-md:   14px;
+    --radius-lg:   20px;
+    --radius-xl:   28px;
+    --radius-full: 9999px;
+
+    /* المسافات */
+    --space-1: 4px;
+    --space-2: 8px;
+    --space-3: 12px;
+    --space-4: 16px;
+    --space-5: 20px;
+    --space-6: 24px;
+    --space-8: 32px;
+    --space-10: 40px;
+
+    /* الانتقالات */
+    --t-fast:   150ms cubic-bezier(0.4, 0, 0.2, 1);
+    --t-normal: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    --t-slow:   400ms cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* الطبقات */
+    --z-sidebar:    1000;
+    --z-backdrop:   999;
+    --z-header:     100;
+    --z-mobile-nav: 90;
+    --z-modal:      2000;
+    --z-toast:      3000;
+    --z-loading:    4000;
+    --z-splash:     5000;
+
+    --font: 'Cairo', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+    --header-h:     64px;
+    --sidebar-w:    280px;
+    --mobile-nav-h: 64px;
+}
+
+/* الوضع الليلي */
+[data-theme="dark"] {
+    --bg:        #0d0906;
+    --bg-alt:    #14100a;
+    --surface:   #1a1410;
+    --surface-2: #221a13;
+    --surface-3: #2a2018;
+
+    --text:   #f5ede4;
+    --text-2: #d4c5b5;
+    --text-3: #8b7a6a;
+    --text-4: #5a4a3a;
+
+    --border:   rgba(255, 255, 255, 0.06);
+    --border-2: rgba(184, 134, 11, 0.18);
+
+    --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.3);
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.4);
+    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.5);
+    --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.6);
+    --shadow-xl: 0 24px 64px rgba(0, 0, 0, 0.7);
+}
+
+/* التهيئة */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    font-family: var(--font);
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.6;
+    font-weight: 500;
+    direction: rtl;
+    overflow-x: hidden;
+    min-height: 100vh;
+    min-height: 100dvh;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transition: background var(--t-normal), color var(--t-normal);
+    overscroll-behavior-y: none;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button {
+    font-family: inherit;
+    cursor: pointer;
+    border: none;
+    background: none;
+    color: inherit;
+}
+
+input, textarea, select {
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+ul, ol {
+    list-style: none;
+}
+
+/* شريط التمرير */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--text-4);
+    border-radius: var(--radius-full);
+    border: 2px solid transparent;
+    background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary);
+    background-clip: content-box;
+}
+
+::selection {
+    background: var(--primary);
+    color: #ffffff;
+}
+
+:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+    border-radius: var(--radius-xs);
+}
+
+/* شاشة البداية */
+.splash-screen {
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(135deg, var(--bg) 0%, var(--surface-2) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: var(--z-splash);
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.splash-screen.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.splash-content {
+    text-align: center;
+    animation: splashIn 0.8s ease;
+}
+
+.splash-logo {
+    font-size: 88px;
+    margin-bottom: var(--space-4);
+    animation: splashPulse 2s ease-in-out infinite;
+    filter: drop-shadow(0 8px 24px var(--primary-glow));
+}
+
+.splash-title {
+    font-size: 42px;
+    font-weight: 900;
+    color: var(--primary);
+    letter-spacing: -1px;
+    margin-bottom: var(--space-2);
+}
+
+.splash-subtitle {
+    color: var(--text-3);
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: var(--space-8);
+}
+
+.splash-loader {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: var(--space-6);
+}
+
+.splash-loader span {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--primary);
+    animation: splashBounce 1.4s ease-in-out infinite;
+}
+
+.splash-loader span:nth-child(1) { animation-delay: 0s; }
+.splash-loader span:nth-child(2) { animation-delay: 0.2s; }
+.splash-loader span:nth-child(3) { animation-delay: 0.4s; }
+
+.splash-version {
+    color: var(--text-4);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+@keyframes splashIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes splashPulse {
+    0%, 100% { transform: scale(1); }
+    50%      { transform: scale(1.08); }
+}
+
+@keyframes splashBounce {
+    0%, 80%, 100% { transform: translateY(0); opacity: 0.4; }
+    40%           { transform: translateY(-12px); opacity: 1; }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50%      { opacity: 0.5; }
+}
+
+/* أدوات مساعدة */
+.hidden { display: none !important; }
+.text-center { text-align: center; }
+.text-right  { text-align: right; }
+.text-left   { text-align: left; }
+
+/* تقليل الحركة */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}

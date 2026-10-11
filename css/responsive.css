@@ -1,0 +1,506 @@
+/* ============================================================
+   ترابط v3.0 — التجاوب (Responsive)
+   ============================================================ */
+
+/* ============================================================
+   تابلت
+   ============================================================ */
+@media (max-width: 1023px) {
+    .export-grid {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+
+    .tips-list {
+        grid-template-columns: 1fr;
+    }
+
+    .about-info {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+/* ============================================================
+   الجوال
+   ============================================================ */
+@media (max-width: 767px) {
+
+    body {
+        font-size: 14px;
+    }
+
+    .page-title {
+        font-size: 20px;
+    }
+
+    .page-title i {
+        font-size: 18px;
+    }
+
+    .page-subtitle {
+        font-size: 13px;
+    }
+
+    /* البطاقات */
+    .card-header {
+        padding: var(--space-3) var(--space-4);
+    }
+
+    .card-body {
+        padding: var(--space-4);
+    }
+
+    .card-footer {
+        padding: var(--space-3) var(--space-4);
+    }
+
+    .card-header h3 {
+        font-size: 14px;
+    }
+
+    /* الأزرار */
+    .btn {
+        padding: 10px 16px;
+        font-size: 13px;
+    }
+
+    .btn-lg {
+        padding: 12px 22px;
+        font-size: 14px;
+    }
+
+    .btn-icon {
+        width: 38px;
+        height: 38px;
+    }
+
+    /* البانر */
+    .welcome-banner {
+        padding: var(--space-5) var(--space-4);
+    }
+
+    .welcome-banner h1 {
+        font-size: 20px;
+    }
+
+    .welcome-banner p {
+        font-size: 13px;
+    }
+
+    .welcome-actions {
+        width: 100%;
+    }
+
+    .welcome-actions .btn {
+        flex: 1;
+        min-width: 0;
+    }
+
+    /* الإحصائيات */
+    .stats-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-3);
+    }
+
+    .stat-card {
+        padding: var(--space-3);
+        flex-direction: column;
+        text-align: center;
+        gap: var(--space-2);
+    }
+
+    .stat-icon {
+        width: 42px;
+        height: 42px;
+        font-size: 18px;
+    }
+
+    .stat-label {
+        font-size: 11px;
+    }
+
+    .stat-value {
+        font-size: 20px;
+    }
+
+    /* الإجراءات السريعة */
+    .quick-actions {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .quick-action {
+        padding: var(--space-3) var(--space-2);
+        min-height: 80px;
+        font-size: 11px;
+    }
+
+    .quick-action i {
+        font-size: 20px;
+    }
+
+    /* المودال */
+    .modal {
+        align-items: flex-end;
+        padding: 0;
+    }
+
+    .modal-box {
+        max-width: 100%;
+        border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+        max-height: 90vh;
+        transform: translateY(100%);
+    }
+
+    .modal.active .modal-box {
+        transform: translateY(0);
+    }
+
+    .modal-header {
+        padding: var(--space-4);
+    }
+
+    .modal-title {
+        font-size: 15px;
+    }
+
+    .modal-body {
+        padding: var(--space-4);
+    }
+
+    .modal-footer {
+        padding: var(--space-3) var(--space-4) calc(var(--space-3) + env(safe-area-inset-bottom, 0));
+    }
+
+    /* الجدول */
+    .table th,
+    .table td {
+        padding: 10px 12px;
+        font-size: 13px;
+    }
+
+    .table .col-index {
+        width: 40px;
+    }
+
+    .table .col-actions {
+        width: auto;
+    }
+
+    /* الشهادات */
+    .preview-container {
+        aspect-ratio: 1.414 / 1;
+        max-height: 45vh;
+    }
+
+    .preview-placeholder i {
+        font-size: 42px;
+    }
+
+    .controls-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-2);
+    }
+
+    .position-pad {
+        gap: 4px;
+    }
+
+    .pos-btn {
+        width: 42px;
+        height: 42px;
+        font-size: 14px;
+    }
+
+    .position-display {
+        font-size: 12px;
+        gap: var(--space-3);
+    }
+
+    .position-display strong {
+        font-size: 14px;
+    }
+
+    /* المشاركون */
+    .participants-toolbar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .search-box {
+        min-width: 0;
+    }
+
+    .toolbar-actions {
+        justify-content: stretch;
+    }
+
+    .toolbar-actions .btn {
+        flex: 1;
+    }
+
+    /* التصدير */
+    .export-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .export-card {
+        padding: var(--space-4);
+    }
+
+    .export-card-icon {
+        width: 44px;
+        height: 44px;
+        font-size: 20px;
+    }
+
+    .export-card h3 {
+        font-size: 15px;
+    }
+
+    /* الدليل */
+    .guide-step {
+        padding: var(--space-3);
+        gap: var(--space-3);
+    }
+
+    .step-num {
+        width: 28px;
+        height: 28px;
+        font-size: 12px;
+    }
+
+    /* حول */
+    .about-hero {
+        padding: var(--space-6) var(--space-4);
+    }
+
+    .about-logo {
+        font-size: 52px;
+    }
+
+    .about-hero h2 {
+        font-size: 22px;
+    }
+
+    .about-info {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    /* الإشعارات */
+    .toast-container {
+        top: 12px;
+        width: calc(100% - 20px);
+    }
+
+    .toast {
+        padding: var(--space-3);
+        font-size: 12px;
+    }
+
+    .toast-icon {
+        width: 28px;
+        height: 28px;
+        font-size: 13px;
+    }
+}
+
+/* ============================================================
+   جوال صغير
+   ============================================================ */
+@media (max-width: 480px) {
+    .stats-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .quick-actions {
+        grid-template-columns: 1fr;
+    }
+
+    .about-info {
+        grid-template-columns: 1fr;
+    }
+
+    .controls-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .preview-container {
+        max-height: 35vh;
+    }
+
+    /* الجدول كبطاقات */
+    .table.table-cards thead {
+        display: none;
+    }
+
+    .table.table-cards tbody tr {
+        display: block;
+        background: var(--surface-2);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-sm);
+        padding: var(--space-3);
+        margin-bottom: var(--space-2);
+    }
+
+    .table.table-cards tbody td {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 6px 0;
+        border: none;
+    }
+
+    .table.table-cards tbody td::before {
+        content: attr(data-label);
+        font-size: 11px;
+        font-weight: 800;
+        color: var(--text-3);
+        text-transform: uppercase;
+    }
+
+    .table.table-cards .cell-actions {
+        justify-content: flex-start;
+        margin-top: var(--space-2);
+        padding-top: var(--space-2);
+        border-top: 1px solid var(--border);
+    }
+}
+
+/* ============================================================
+   جوال صغير جداً
+   ============================================================ */
+@media (max-width: 360px) {
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .header-brand-name {
+        display: none;
+    }
+
+    .page-title {
+        font-size: 18px;
+    }
+
+    .modal-title {
+        font-size: 14px;
+    }
+}
+
+/* ============================================================
+   أجهزة لمسية
+   ============================================================ */
+@media (hover: none) and (pointer: coarse) {
+    .stat-card:hover,
+    .card-elevated:hover,
+    .quick-action:hover,
+    .export-card:hover {
+        transform: none;
+    }
+}
+
+/* ============================================================
+   أفقي للجوال
+   ============================================================ */
+@media (max-width: 900px) and (orientation: landscape) {
+    .preview-container {
+        max-height: 60vh;
+    }
+
+    .modal-box {
+        max-height: 95vh;
+    }
+}
+
+/* ============================================================
+   Safe Area
+   ============================================================ */
+@supports (padding: env(safe-area-inset-top)) {
+    .header {
+        padding-top: env(safe-area-inset-top, 0);
+        height: calc(var(--header-h) + env(safe-area-inset-top, 0));
+    }
+
+    .sidebar {
+        padding-top: env(safe-area-inset-top, 0);
+    }
+
+    .sidebar-footer {
+        padding-bottom: calc(var(--space-4) + env(safe-area-inset-bottom, 0));
+    }
+
+    .mobile-nav {
+        padding-bottom: env(safe-area-inset-bottom, 0);
+        height: calc(var(--mobile-nav-h) + env(safe-area-inset-bottom, 0));
+    }
+
+    .toast-container {
+        top: calc(20px + env(safe-area-inset-top, 0));
+    }
+}
+
+/* ============================================================
+   PWA
+   ============================================================ */
+@media (display-mode: standalone) {
+    .header {
+        -webkit-app-region: drag;
+    }
+
+    .header-btn {
+        -webkit-app-region: no-drag;
+    }
+}
+
+/* ============================================================
+   الطباعة
+   ============================================================ */
+@media print {
+    .sidebar,
+    .sidebar-backdrop,
+    .header,
+    .mobile-nav,
+    .toast-container,
+    .loading-overlay,
+    .modal,
+    .btn,
+    .toolbar,
+    .card-actions {
+        display: none !important;
+    }
+
+    .main {
+        margin: 0 !important;
+    }
+
+    .main-content {
+        padding: 0 !important;
+    }
+
+    .page {
+        display: block !important;
+    }
+
+    .card {
+        box-shadow: none !important;
+        border: 1px solid #ddd !important;
+        page-break-inside: avoid;
+    }
+}
+
+/* ============================================================
+   أدوات عامة
+   ============================================================ */
+@media (min-width: 768px) {
+    .show-mobile { display: none !important; }
+}
+
+@media (max-width: 767px) {
+    .show-desktop { display: none !important; }
+
+    /* منع zoom على iOS */
+    input,
+    select,
+    textarea {
+        font-size: 16px !important;
+    }
+}
